@@ -12,7 +12,13 @@ export default function PhotoOTD({ date, explanation, title, vidUrl }) {
         {title || "LOADING..."}
       </Header>
       <h4 className="date">{date}</h4>
-      <img src={vidUrl} alt="nasa" />
+      <iframe
+        url={vidUrl}
+        src={vidUrl}
+        title={title}
+        style={{ height: "500px", width: "900px" }}
+      />
+
       <p className="explain">{explanation}</p>
     </div>
   );

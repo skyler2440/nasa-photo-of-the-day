@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import PhotoOTD from "./components/PhotoOTD";
+// import PhotoOTD from "./components/PhotoOTD";
 import PhotoOTDInfo from "./components/PhotoOTDInfo";
 
 function App() {

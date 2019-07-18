@@ -1,37 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PhotoOTD from "./PhotoOTD";
+import VideoOTD from "./VideoOTD";
+export default function PhotoOTDInfo() {
+  const [data, setData] = useState([]);
 
-
-export default function PhotoOTDInfo(){
-const [data, setData] = useState([]);
-
-useEffect(() => {
+  useEffect(() => {
     axios
-      .get(`https://api.nasa.gov/planetary/apod?api_key=CKlkJ0IAyI7ZRrBfKyK99ck1nNXwWE0wFCsQk1SO`)
+      .get(
+        `https://api.nasa.gov/planetary/apod?api_key=CKlkJ0IAyI7ZRrBfKyK99ck1nNXwWE0wFCsQk1SO`
+      )
       .then(response => {
-        // const doggos = response.data.message;
-        // console.log("api data:", response);
         const nasaData = response.data;
-        // console.log (title)
-        // KEY PART, SAVE TO STATE:
-        setData(nasaData)
-        console.log(nasaData)
-        ;
+        setData(nasaData);
       });
   }, []);
-
-
-return(
-<div className="data">
-
-<PhotoOTD title={data.title} date={data.date} vidUrl={data.url} explanation={data.explanation}/>
-
-
-</div>
-   
-)
-
-
-
+  var photoVideo;
+  if (data.media_type === "image") {
+    photoVideo = (
+      <PhotoOTD
+        title={data.title}
+        date={data.date}
+        vidUrl={data.url}
+        explanation={data.explanation}
+        mediaType={data.media_type}
+      />
+    );
+  } else {
+    photoVideo = (
+      <VideoOTD
+        title={data.title}
+        date={data.date}
+        vidUrl={data.url}
+        explanation={data.explanation}
+        mediaType={data.media_type}
+      />
+    );
+  }
+  return <div className="data">{photoVideo}</div>;
 }
