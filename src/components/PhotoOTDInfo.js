@@ -24,7 +24,7 @@ export default function PhotoOTDInfo() {
         vidUrl={data.url}
         explanation={data.explanation}
         mediaType={data.media_type}
-      />
+      fluid />
     );
   } else {
     photoVideo = (
